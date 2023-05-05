@@ -6,11 +6,11 @@ import thunk from 'redux-thunk';
 import cartReducer from './cartSlice';
 import detailReducer from './productDetailSlice';
 
-const persistConfig = {
-  key: 'root',
-  storage,
-  blacklist: ['prodDetail']
-}
+  const persistConfig = {
+    key: 'root',
+    storage,
+    blacklist: ['prodDetail']
+  }
 
 const rootReducer = combineReducers({ 
   prodDetail: detailReducer,

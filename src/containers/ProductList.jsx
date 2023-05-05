@@ -1,15 +1,19 @@
 import React from 'react';
-import useGetProducts from '../hooks/useGetProducts';
+import { Navigate, useParams } from 'react-router-dom';
+import { useGetCategories, useGetProducts } from '../hooks/useGet';
+import { useSelector } from 'react-redux';
+
 import ProductItem from '../components/ProductItem';
 import ProductDetail from '../containers/ProductDetail';
-
-import { useSelector } from 'react-redux';
 
 import '../styles/ProductList.scss';
 
 const ProductList = () => {
     const { detailShowed } = useSelector(state=>state.prodDetail)
-	const products = useGetProducts();
+	
+	let { id } = useParams();
+
+	const products = useGetProducts(id);
 
     return (
         <section className="main-container">

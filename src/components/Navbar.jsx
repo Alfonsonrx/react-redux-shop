@@ -6,8 +6,10 @@ import menu from '../assets/icons/icon_menu.svg';
 import logo from '../assets/logos/logo_yard_sale.svg';
 import shoppingCart from '../assets/icons/icon_shopping_cart.svg';
 import { useSelector } from 'react-redux';
+import { useGetCategories } from '../hooks/useGet';
 
 const Header = () => {
+	const categories = useGetCategories();
 
 	const [toggle, setToggle] = useState(false);
 	const [toggleOrders, setToggleOrders] = useState(false);
@@ -26,21 +28,11 @@ const Header = () => {
 					<li>
 						<a href="/">All</a>
 					</li>
-					<li>
-						<a href="/">Clothes</a>
-					</li>
-					<li>
-						<a href="/">Electronics</a>
-					</li>
-					<li>
-						<a href="/">Furnitures</a>
-					</li>
-					<li>
-						<a href="/">Toys</a>
-					</li>
-					<li>
-						<a href="/">Others</a>
-					</li>
+					{categories.map(category => (
+						<li key={category.id}>
+							<a href={"/category/"+category.id}>{category.name}</a>
+						</li>
+					))}
 				</ul>
 			</div>
 			<div className="navbar-right">
