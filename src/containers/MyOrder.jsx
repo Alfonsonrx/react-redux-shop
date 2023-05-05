@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 
 import '../styles/MyOrder.scss';
 import flechita from '../assets/icons/flechita.svg';
+import { Navigate } from 'react-router-dom';
 
 const MyOrder = () => {
 	const { cart }=useSelector((state)=>state.cart);
@@ -12,6 +13,10 @@ const MyOrder = () => {
 		const reducer = (accumulator, currentValue) => accumulator + currentValue.price;
 		const sum = cart.reduce(reducer, 0);
 		return sum;
+	}
+
+	const handleCheckout = () => {
+		<Navigate to={'/checkout'} replace/>
 	}
 
     return (
@@ -30,9 +35,11 @@ const MyOrder = () => {
 					</p>
 					<p>${sumTotal()}</p>
 				</div>
-				<button className="primary-button">
-					Checkout
-				</button>
+				<a href="/checkout">
+					<button className="primary-button">
+						Checkout
+					</button>
+				</a>
 			</div>
 		</aside>
     );
